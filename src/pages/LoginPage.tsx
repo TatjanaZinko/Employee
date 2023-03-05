@@ -1,9 +1,10 @@
 import React from 'react';
+import LoginForm from '../components/LoginForm';
 
 export default function LoginPage() {
   return (
-    <div style={{ minWidth: 350 }}>
-      Login page
+    <div>
+      <LoginForm />
     </div>
   );
 }
