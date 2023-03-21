@@ -1,35 +1,7 @@
 import React, { FormEvent } from 'react';
 import { useState } from 'react';
-import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
-
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    align-items: center;
-`;
-
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Input = styled.input`
-    margin-bottom: 20px;
-    padding: 10px;
-`;
-const ErrorMassage = styled.p`
-    color: red;
-    font-size: 0.8rem;
-    margin: 0;
-`;
-
-
-const Button = styled.button`
-    padding: 10px;
-`;
+import { Wrapper, Form, Input, ErrorMassage, Button } from './styles';
 
 export default function LoginForm() {
     const [login, setLogin] = useState('');
