@@ -1,21 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-interface EmployeeProps {
-  employee: [];
-}
-
-declare module 'react' {
-  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-    to?: string;
-  }
-}
-
-function HomePage(props: EmployeeProps) {
+function HomePage(props) {
 
   const employees = props.employee;
 
-  employees.map((employee: {id: number, name: string})  => {
+  employees.map((employee)  => {
     console.log(employee);
     return(
       <div key={employee.id}>
@@ -28,10 +18,12 @@ function HomePage(props: EmployeeProps) {
    
 } 
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state) => {
   return {
     employee: state.employee
   }  
 }
+
+export default HomePage;
 
 //export default connect(mapStateToProps)(HomePage)
