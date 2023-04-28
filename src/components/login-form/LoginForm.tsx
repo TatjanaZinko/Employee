@@ -2,16 +2,16 @@ import React, { FormEvent } from 'react';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Wrapper, Form, Input, ErrorMassage, Button } from './styles';
-import * as yup from 'yup';
 import { userSchema } from '../../validation/loginFormValidation';
+import { ValidationError } from 'yup';
 
 const LoginForm = () => {
     const [user, setUser] = useState({login: '', password: ''});
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState<string[] | undefined>([]);
 
     const navigate = useNavigate();
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); 
 
         try {
@@ -19,8 +19,11 @@ const LoginForm = () => {
             console.log('Data is valid');
             setErrors([]);
           } catch (error) {
-            console.log('Data is invalid', error.errors);
-            setErrors(error.errors);
+            if (error instanceof ValidationError) {
+              console.log('Data is invalid', error.errors);
+              setErrors(error.errors);
+            }
+            
           }       
 
         if (user.login === "admin" && user.password === "password") {
@@ -31,7 +34,7 @@ const LoginForm = () => {
         }       
     }  
 
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setUser((prevData) => ({ ...prevData, [name]: value }));
     };
@@ -42,7 +45,7 @@ const LoginForm = () => {
       <Form onSubmit={handleSubmit}>
         <Input value={user.login} onChange={handleChange}  type="text" placeholder="Login" id="login" name="login" required></Input>
         <Input value={user.password} onChange={handleChange} type="password" placeholder="Password" id="password" name="password" required></Input>
-        {errors.map((error, index) => (<ErrorMassage key={index}>{error}</ErrorMassage>))}       
+        {errors?.map((error, index) => (<ErrorMassage key={index}>{error}</ErrorMassage>))}       
         <Button type="submit">Log in</Button>
       </Form>
     </Wrapper>
