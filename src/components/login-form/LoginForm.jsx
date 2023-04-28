@@ -5,7 +5,7 @@ import { Wrapper, Form, Input, ErrorMassage, Button } from './styles';
 import * as yup from 'yup';
 import { userSchema } from '../../validation/loginFormValidation';
 
-export default function LoginForm() {
+const LoginForm = () => {
     const [user, setUser] = useState({login: '', password: ''});
     const [errors, setErrors] = useState([]);
 
@@ -48,3 +48,5 @@ export default function LoginForm() {
     </Wrapper>
   );
 }
+
+export default LoginForm;

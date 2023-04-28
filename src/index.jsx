@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import Reducer from './Reducer';
+import { EmployeeProvider } from './contexts/employee.context'
 
 const store = createStore(Reducer);
 
@@ -15,7 +16,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <EmployeeProvider>
+        <App />
+      </EmployeeProvider>
     </Provider>
   </React.StrictMode>
 );
