@@ -1,9 +1,15 @@
-import { useContext } from 'react';
-import { EmployeeContext } from '../contexts/employee.context';
+import { useState, useEffect } from 'react';
+import { employeesStore } from '../store/employees.store';
 
 const HomePage = () => {
+  
+  const [employees, setEmployees] = useState([]);
 
-  const { employees } = useContext(EmployeeContext);
+  useEffect(() => {
+    employeesStore.fetchData().then((employees) => {
+      setEmployees(employees);
+    });
+  }, []);  
  
   return(
     <div className='employee-container'>
