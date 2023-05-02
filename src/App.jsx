@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import PrivateRoutes from './components/PrivateRoutes ';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
         <Routes>

@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function EmployeeDetailsPage() {
+const EmployeeDetailsPage = () => {
   return (
     <div>
       EmployeeDetailsPage
     </div>
   );
 }
+
+export default EmployeeDetailsPage;
